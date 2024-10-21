@@ -1,14 +1,10 @@
 import { serve } from "@hono/node-server";
-import { OpenAPIHono } from "@hono/zod-openapi";
 
-const app = new OpenAPIHono();
-
-app.get("/", (c) => {
-  return c.text("Hello Hono!");
-});
+import app from "./app.js";
 
 const port = 3000;
-console.log(`Server is running on port ${port}`);
+// eslint-disable-next-line no-console
+console.log(`Server is running on port http://localhost:${port}`);
 
 serve({
   fetch: app.fetch,
