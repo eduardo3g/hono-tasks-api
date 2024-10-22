@@ -1,5 +1,9 @@
 import createApp from "@/lib/create-app.js";
 
-const app = createApp;
+import configureOpenAPI from "./lib/configure-open-api.js";
+
+const app = createApp();
+
+configureOpenAPI(app);
 
 export default app;
