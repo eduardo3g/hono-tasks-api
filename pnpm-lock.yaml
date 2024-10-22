@@ -24,8 +24,8 @@ dependencies:
     specifier: ^11.0.6
     version: 11.0.6
   drizzle-orm:
-    specifier: ^0.35.3
-    version: 0.35.3(@libsql/client-wasm@0.14.0)(@libsql/client@0.14.0)
+    specifier: ^0.33.0
+    version: 0.33.0(@libsql/client@0.14.0)
   hono:
     specifier: ^4.6.5
     version: 4.6.5
@@ -53,8 +53,8 @@ devDependencies:
     specifier: ^20.11.17
     version: 20.16.13
   drizzle-kit:
-    specifier: ^0.26.2
-    version: 0.26.2
+    specifier: ^0.24.2
+    version: 0.24.2
   eslint:
     specifier: ^9.11.1
     version: 9.13.0
@@ -1071,15 +1071,6 @@ packages:
     resolution: {integrity: sha512-gv3ZRaISU3fjPAgNsriBRqGWQL6quFx04YMPW/zD8XMLsU32mhCCbfbO6KZFLjvYpCZ8zyDEgqsgf+PwPaM7GQ==}
     dev: true
 
-  /@libsql/client-wasm@0.14.0:
-    resolution: {integrity: sha512-gB/jtz0xuwrqAHApBv9e9JSew2030Fhj2edyZ83InZ4yPj/Q2LTUlEhaspEYT0T0xsAGqPy38uGrmq/OGS+DdQ==}
-    dependencies:
-      '@libsql/core': 0.14.0
-      js-base64: 3.7.7
-    dev: false
-    bundledDependencies:
-      - '@libsql/libsql-wasm-experimental'
-
   /@libsql/client@0.14.0:
     resolution: {integrity: sha512-/9HEKfn6fwXB5aTEEoMeFh4CtG0ZzbncBb1e++OCdVpgKZ/xyMsIVYXm0w7Pv4RUel803vE6LwniB3PqD72R0Q==}
     dependencies:
@@ -1805,8 +1796,8 @@ packages:
     engines: {node: '>=12'}
     dev: false
 
-  /drizzle-kit@0.26.2:
-    resolution: {integrity: sha512-cMq8omEKywjIy5KcqUo6LvEFxkl8/zYHsgYjFVXjmPWWtuW4blcz+YW9+oIhoaALgs2ebRjzXwsJgN9i6P49Dw==}
+  /drizzle-kit@0.24.2:
+    resolution: {integrity: sha512-nXOaTSFiuIaTMhS8WJC2d4EBeIcN9OSt2A2cyFbQYBAZbi7lRsVGJNqDpEwPqYfJz38yxbY/UtbvBBahBfnExQ==}
     hasBin: true
     dependencies:
       '@drizzle-team/brocli': 0.10.1
@@ -1817,14 +1808,13 @@ packages:
       - supports-color
     dev: true
 
-  /drizzle-orm@0.35.3(@libsql/client-wasm@0.14.0)(@libsql/client@0.14.0):
-    resolution: {integrity: sha512-Uv6N+b36x4BaZlxc96e+ag7RnMapBLGhc4SSi2F7RDwqYJipWjaU/P68RUp1FbW9r+mxoDp8nMz2Eece8PJxfA==}
+  /drizzle-orm@0.33.0(@libsql/client@0.14.0):
+    resolution: {integrity: sha512-SHy72R2Rdkz0LEq0PSG/IdvnT3nGiWuRk+2tXZQ90GVq/XQhpCzu/EFT3V2rox+w8MlkBQxifF8pCStNYnERfA==}
     peerDependencies:
       '@aws-sdk/client-rds-data': '>=3'
       '@cloudflare/workers-types': '>=3'
       '@electric-sql/pglite': '>=0.1.1'
-      '@libsql/client': '>=0.10.0'
-      '@libsql/client-wasm': '>=0.10.0'
+      '@libsql/client': '*'
       '@neondatabase/serverless': '>=0.1'
       '@op-engineering/op-sqlite': '>=2'
       '@opentelemetry/api': ^1.4.1
@@ -1908,7 +1898,6 @@ packages:
         optional: true
     dependencies:
       '@libsql/client': 0.14.0
-      '@libsql/client-wasm': 0.14.0
     dev: false
 
   /electron-to-chromium@1.5.41:
