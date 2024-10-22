@@ -1,6 +1,6 @@
 import type { AppOpenAPI } from "./types.js";
 
-import packageJSON from "../../package.json" assert { type: "json" };
+import packageJSON from "../../package.json";
 
 export default function configureOpenAPI(app: AppOpenAPI) {
   app.doc("/doc", {
