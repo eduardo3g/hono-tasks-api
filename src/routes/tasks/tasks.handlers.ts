@@ -1,3 +1,5 @@
+import * as HTTPStatusCodes from "stoker/http-status-codes";
+
 import type { AppRouteHandler } from "@/lib/types";
 
 import db from "@/db";
@@ -13,5 +15,5 @@ export const list: AppRouteHandler<ListRoute> = async (c) => {
 export const create: AppRouteHandler<CreateRoute> = async (c) => {
   const task = c.req.valid("json");
   const [inserted] = await db.insert(tasks).values(task).returning();
-  return c.json(inserted);
+  return c.json(inserted, HTTPStatusCodes.CREATED);
 };

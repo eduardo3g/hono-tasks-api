@@ -1,6 +1,7 @@
 import { createRoute, z } from "@hono/zod-openapi";
 import * as HTTPStatusCodes from "stoker/http-status-codes";
 import { jsonContent, jsonContentRequired } from "stoker/openapi/helpers";
+import { createErrorSchema } from "stoker/openapi/schemas";
 
 import { insertTasksSchema, selectTasksSchema } from "@/db/schema";
 
@@ -32,6 +33,10 @@ export const create = createRoute({
     [HTTPStatusCodes.CREATED]: jsonContent(
       selectTasksSchema,
       "The created task",
+    ),
+    [HTTPStatusCodes.UNPROCESSABLE_ENTITY]: jsonContent(
+      createErrorSchema(insertTasksSchema),
+      "The validation error(s)",
     ),
   },
 });
