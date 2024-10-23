@@ -4,7 +4,7 @@ import { defaultHook } from "stoker/openapi";
 
 import { pinoLogger } from "@/middlewares/pino-logger.js";
 
-import type { AppBindings } from "./types.ts";
+import type { AppBindings, AppOpenAPI } from "./types.ts";
 
 export function createRouter() {
   return new OpenAPIHono<AppBindings>({
@@ -13,7 +13,7 @@ export function createRouter() {
   });
 }
 
-function createApp() {
+export default function createApp() {
   const app = createRouter();
   app.use(serveEmojiFavicon("🔥"));
   app.use(pinoLogger());
@@ -23,4 +23,6 @@ function createApp() {
   return app;
 }
 
-export default createApp;
+export function createTestApp(router: AppOpenAPI) {
+  return createApp().route("/", router);
+};
