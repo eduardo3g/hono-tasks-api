@@ -1,4 +1,5 @@
 import { logger } from "hono-pino";
+import crypto from "node:crypto";
 import pino from "pino";
 import pretty from "pino-pretty";
 
