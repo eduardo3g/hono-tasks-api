@@ -1,10 +1,17 @@
+/* eslint-disable node/no-process-env */
 import type { ZodError } from "zod";
 
 import { config } from "dotenv";
 import { expand } from "dotenv-expand";
+import path from "node:path";
 import { z } from "zod";
 
-expand(config());
+expand(config({
+  path: path.resolve(
+    process.cwd(),
+    process.env.NODE_ENV === "test" ? ".env.test" : ".env",
+  ),
+}));
 
 const EnvSchema = z.object({
   NODE_ENV: z.string().default("development"),
@@ -30,7 +37,6 @@ export type env = z.infer<typeof EnvSchema>;
 let env: env;
 
 try {
-// eslint-disable-next-line node/no-process-env
   env = EnvSchema.parse(process.env);
 }
 catch (e) {
