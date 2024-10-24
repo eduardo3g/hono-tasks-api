@@ -58,6 +58,9 @@ devDependencies:
   '@types/node':
     specifier: ^20.11.17
     version: 20.16.13
+  cross-env:
+    specifier: ^7.0.3
+    version: 7.0.3
   drizzle-kit:
     specifier: ^0.24.2
     version: 0.24.2
@@ -2131,6 +2134,14 @@ packages:
     resolution: {integrity: sha512-JRH6gfXxGmrzF3tZ57lFx97YARxCXPaMzPo6jELZhv88pBH5VXpQ+y0znKGlFnzuaihqhLbefxSJxWJMPtfDzw==}
     dependencies:
       browserslist: 4.24.2
+    dev: true
+
+  /cross-env@7.0.3:
+    resolution: {integrity: sha512-+/HKd6EgcQCJGh2PSjZuUitQBQynKor4wrFbRg4DtAgS1aWO+gU52xpH7M9ScGgXSYmAVS9bIJ8EzuaGw0oNAw==}
+    engines: {node: '>=10.14', npm: '>=6', yarn: '>=1'}
+    hasBin: true
+    dependencies:
+      cross-spawn: 7.0.3
     dev: true
 
   /cross-spawn@7.0.3:
