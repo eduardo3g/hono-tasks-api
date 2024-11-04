@@ -31,19 +31,17 @@ const EnvSchema = z.object({
   }
 });
 
-export type env = z.infer<typeof EnvSchema>;
+export type Environment = z.infer<typeof EnvSchema>;
 
-// eslint-disable-next-line import/no-mutable-exports, ts/no-redeclare
-let env: env;
+export function parseEnv(data: any) {
+  const { data: env, error } = EnvSchema.safeParse(data);
 
-try {
-  env = EnvSchema.parse(process.env);
+  if (error) {
+    const errorMessage = `❌ Invalid env: ${Object.entries(error.flatten().fieldErrors)
+      .map(([key, errors]) => `${key}: ${errors.join(",")}`)
+      .join(" | ")}`;
+    throw new Error(errorMessage);
+  }
+
+  return env;
 }
-catch (e) {
-  const error = e as ZodError;
-  console.error("❌ Invalid env:");
-  console.error(error.flatten().fieldErrors);
-  process.exit(1);
-}
-
-export default env;
