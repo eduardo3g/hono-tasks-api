@@ -1,20 +1,22 @@
-import { logger } from "hono-pino";
+import type { Context, MiddlewareHandler } from "hono";
+
+import { type Env, logger } from "hono-pino";
 import crypto from "node:crypto";
 import pino from "pino";
 import pretty from "pino-pretty";
 
-import env from "@/env.js";
+import type { AppBindings } from "@/lib/types";
 
 export function pinoLogger() {
-  return logger({
+  return ((c, next) => logger({
     pino: pino(
       {
-        level: env.LOG_LEVEL || "info",
+        level: c.env.LOG_LEVEL || "info",
       },
-      env.NODE_ENV === "production" ? undefined : pretty(),
+      c.env.NODE_ENV === "production" ? undefined : pretty(),
     ),
     http: {
       reqId: () => crypto.randomUUID(),
     },
-  });
+  })(c as unknown as Context<Env>, next)) satisfies MiddlewareHandler<AppBindings>;
 }
