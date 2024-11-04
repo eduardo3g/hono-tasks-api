@@ -29,3 +29,5 @@ lerna-debug.log*
 
 # sqllite
 dev.db
+
+dist
