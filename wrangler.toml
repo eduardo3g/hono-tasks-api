@@ -1,0 +1,4 @@
+name = "hono-tasks-api"
+main = "src/app.ts"
+compatibility_date = "2024-04-01"
+compatibility_flags = [ "nodejs_compat" ]
