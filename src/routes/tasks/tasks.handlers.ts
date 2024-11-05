@@ -21,8 +21,11 @@ export const list: AppRouteHandler<ListRoute> = async (c) => {
 
 export const create: AppRouteHandler<CreateRoute> = async (c) => {
   const { db } = createDb(c.env);
+  const { logger } = c.var;
   const task = c.req.valid("json");
   const [inserted] = await db.insert(tasks).values(task).returning();
+
+  logger.info("Task created successfully", { task: inserted });
   return c.json(inserted, HTTPStatusCodes.CREATED);
 };
 
