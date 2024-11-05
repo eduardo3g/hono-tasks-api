@@ -12,7 +12,10 @@ import type { CreateRoute, GetOneRoute, ListRoute, PatchRoute, RemoveRoute } fro
 
 export const list: AppRouteHandler<ListRoute> = async (c) => {
   const { db } = createDb(c.env);
+  const { logger } = c.var;
   const tasks = await db.query.tasks.findMany();
+
+  logger.info(`Successfully listed tasks`, { count: tasks.length, tasks });
   return c.json(tasks);
 };
 
